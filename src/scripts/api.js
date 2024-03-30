@@ -49,14 +49,6 @@ async function loadCharacters() {
   await renderCharacters();
 }
 
-async function fetchAskChampion() {
-  document.body.style.cursor = "wait";
-  const id = state.view.avatar.dataset.id;
-  const message = state.view.question.value;
-  const response = await apiService.postAskChampion(id, message);
-  state.view.response.textContent = response.answer;
-  document.body.style.cursor = "default";
-}
 
 async function renderCharacters() {
   const charactersData = state.values.characters;
@@ -104,6 +96,15 @@ async function getRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
 
   return quotes[randomIndex];
+}
+
+async function fetchAskChampion() {
+  document.body.style.cursor = "wait";
+  const id = state.view.avatar.dataset.id;
+  const message = state.view.question.value;
+  const response = await apiService.postAskChampion(id, message);
+  state.view.response.textContent = response.answer;
+  document.body.style.cursor = "default";
 }
 
 async function loadCarrousel() {
